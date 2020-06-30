@@ -54,21 +54,19 @@ options = [option_0, option_1, option_2, option_3]
 
 # Handful patterns
 # -- Entering group definition block
-p_entering_group_block = re.compile(
-    '^\s*config firewall addrgrp$', re.IGNORECASE)
+p_entering_group_block = re.compile(r'^\s*config firewall addrgrp$', re.IGNORECASE)
 
 # -- Exiting group definition block
-p_exiting_group_block = re.compile('^end$', re.IGNORECASE)
+p_exiting_group_block = re.compile(r'^end$', re.IGNORECASE)
 
 # -- Commiting the current group definition and going to the next one
-p_group_next = re.compile('^next$', re.IGNORECASE)
+p_group_next = re.compile(r'^next$', re.IGNORECASE)
 
 # -- Policy number
-p_group_name = re.compile('^\s*edit\s+"(?P<group_name>.*)"$', re.IGNORECASE)
+p_group_name = re.compile(r'^\s*edit\s+"(?P<group_name>.*)"$', re.IGNORECASE)
 
 # -- Policy setting
-p_group_set = re.compile(
-    '^\s*set\s+(?P<group_key>\S+)\s+(?P<group_value>.*)$', re.IGNORECASE)
+p_group_set = re.compile(r'^\s*set\s+(?P<group_key>\S+)\s+(?P<group_value>.*)$', re.IGNORECASE)
 
 # Functions
 
@@ -139,7 +137,7 @@ def generate_csv(results, keys, fd, newline, skip_header):
             @param fd : output file descriptor
     """
     if results and keys:
-        with open(fd, 'wb') as fd_output:
+        with open(fd, 'w') as fd_output:
             spamwriter = csv.writer(fd_output, delimiter=';')
 
             if not(skip_header):
